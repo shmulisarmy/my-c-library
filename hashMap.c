@@ -68,16 +68,20 @@ char* hashMapGet(hashMap* hm, char key[10]){
 }
 
 
-int main(){
-    hashMap* hm = hashMapConstructor();
-    hashMapSet(hm, "name", "shmuli");
-    hashMapSet(hm, "key2", "value2");
-    hashMapSet(hm, "key3", "value3");
-    printf("%s\n", hashMapGet(hm, "name"));
-    printf("%s\n", hashMapGet(hm, "key2"));
 
+void hashMapMemClear(){
+    linkedListMemClear();
     for (int i = 0; i < pointerCount; i++){
         free(pointers[i]);
     }
-    linkedListMemClear();
+}
+
+
+void hashMapSampleCode(){
+    hashMap* hmp = hashMapConstructor();
+    hashMapSet(hmp, "name", "shmuli");
+    hashMapSet(hmp, "key2", "value2");
+    hashMapSet(hmp, "key3", "value3");
+    printf("%s\n", hashMapGet(hmp, "name"));
+    printf("%s\n", hashMapGet(hmp, "key2"));
 }
