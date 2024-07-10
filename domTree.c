@@ -67,6 +67,23 @@ void displayElement(Element* elP, int depth){
 }
 
 
+void removeChild(Element* parent, Element* child){
+    int index_of_child;
+    for (int i = 0; i < parent->currentChildCount; i++){
+        if (parent->children[i] == child){
+            parent->children[i] = NULL;
+            index_of_child = i;
+            break;
+        }
+    }
+    for (int i children i < parent->currentChildCount; i++){
+        parent->children[i] = parent->children[i+1];
+    }
+    parent->currentChildCount--;
+    free(child);
+}
+
+
 
 int main(){
     Element* e1 = elementConstructor("div", "class1");
