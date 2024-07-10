@@ -17,11 +17,11 @@ struct linkedList{
     char key[10];
     char value[10];
     linkedList* next;
-    volitile int mutex;
+    volatile int mutex;
 };
 
 linkedList* linkedListPointers[1000];
-volitile int linkedListPointerCount = 0;
+volatile int linkedListPointerCount = 0;
 
 
 linkedList* linkedListConstructor(const char firstKey[10], const char firstValue[10]){

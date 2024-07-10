@@ -20,8 +20,8 @@ struct hashMap{
 
 
 void* pointers[1000];
-volitile int pointerCount = 0;
-volitile int pointerListMutex = 0;
+volatile int pointerCount = 0;
+volatile int pointerListMutex = 0;
 
 hashMap* hashMapConstructor(){
     hashMap* hmp = (hashMap*)malloc(sizeof(hashMap));
@@ -55,7 +55,8 @@ void hashMapSet(hashMap* hm, char key[10], char value[10]){
         hm->list_of_chains[moddedHashValue] = linkedListConstructor(key, value);
         return;
     }
-    while (hm->list_of_chains[moddedHashValue]->mutex){
+    // the unlikely lets the cpu start preparing to handle the common case where the mutex is turned off
+    while (unlikely(hm->list_of_chains[moddedHashValue]->mutex)){
         usleep(1000);
     }
     hm->list_of_chains[moddedHashValue]->mutex = 1;
