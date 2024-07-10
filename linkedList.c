@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 
+//uses voilitile to make it thread safe
+
 
 typedef struct linkedList linkedList;
 
@@ -15,11 +17,11 @@ struct linkedList{
     char key[10];
     char value[10];
     linkedList* next;
-    int mutex;
+    volitile int mutex;
 };
 
 linkedList* linkedListPointers[1000];
-int linkedListPointerCount = 0;
+volitile int linkedListPointerCount = 0;
 
 
 linkedList* linkedListConstructor(const char firstKey[10], const char firstValue[10]){

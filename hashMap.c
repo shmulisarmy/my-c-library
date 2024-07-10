@@ -20,12 +20,18 @@ struct hashMap{
 
 
 void* pointers[1000];
-int pointerCount = 0;
+volitile int pointerCount = 0;
+volitile int pointerListMutex = 0;
 
 hashMap* hashMapConstructor(){
     hashMap* hmp = (hashMap*)malloc(sizeof(hashMap));
+    while (pointerListMutex){
+        usleep(1000);
+    };
+    pointerListMutex = 1;
     pointers[pointerCount] = hmp;
     pointerCount++;
+    pointerListMutex = 0;
     assert(hmp);
     for (int i = 0; i < hashMapListSize; i++){
         hmp->list_of_chains[i] = NULL;
