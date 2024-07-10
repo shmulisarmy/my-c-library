@@ -72,3 +72,11 @@ void linkedListMemClear(){
         free(linkedListPointers[i]);
     }
 }
+
+
+void linkedListSampleCode(){
+    linkedList* llp = linkedListConstructor("name", "shmuli");
+    linkedListSet(llp, "last", "keller");
+    printf("name: %s\n", linkedListGet(llp, "name"));
+    printf("last: %s\n", linkedListGet(llp, "last"));
+}
