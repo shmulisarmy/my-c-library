@@ -25,7 +25,7 @@ volatile int pointerListMutex = 0;
 
 hashMap* hashMapConstructor(){
     hashMap* hmp = (hashMap*)malloc(sizeof(hashMap));
-    while (pointerListMutex){
+    while (likely(pointerListMutex)){
         usleep(1000);
     };
     pointerListMutex = 1;
